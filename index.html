@@ -100,10 +100,11 @@
                     </p>
                     <aside class="notes">
                         how did we get here?
-
-                        1. come to work
-                        2. svn up, git pull, composer install, bower install, vagrant up
-                        3. get coffee
+                        <ul>
+                            <li>come to work</li>
+                            <li>svn up, git pull, composer install, bower install, vagrant up, go nuts</li>
+                            <li>get coffee</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -118,12 +119,12 @@
                 <section data-background="img/trivago_dev.png" data-background-size="1400px">
                     <img src="img/alert_huhu.png" class="fragment fade-in"/>
                     <aside class="notes">
-                        4. open your dev environment and ...
-
-                        Begrüßung: "HUHU"
-
-                        ärgerlich, wenn das auf dem test system passiert
-                        peinlich, wenn das auf dem live system passiert
+                        open your dev environment and ...<br/>
+                        <blockquote>"HUHU"</blockquote>
+                        <ul>
+                            <li>ärgerlich auf staging</li>
+                            <li>peinlich auf live</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -133,19 +134,6 @@
                     <p><span class="bullet no">&#10007;​</span> document.write()</p>
                     <p><span class="bullet no">&#10007;​</span> console.debug() / console.log()</p>
                 </section>
-
-                <!--
-                <section>
-                    <h2>debugging javascript</h2>
-                    <p>
-                        <ul>
-                            <li><del>alert()</del></li>
-                            <li><del>document.write()</del></li>
-                            <li><del>console.debug() / console.log()</del></li>
-                        </ul>
-                    </p>
-                </section>
-                -->
 
                 <section>
                     <h2>debugging JavaScript</h2>
@@ -186,8 +174,8 @@
                     </code>
 
                     <aside class="notes">
-                        favourite: minified javascript
-                        follow link to error in your console and you’ll see ...
+                        minified javascript<br/>
+                        follow link to error in your console and you’ll see ...<br/>
                     </aside>
                 </section>
 
@@ -199,10 +187,9 @@
 
                 <section data-background="img/code_trvjs2.jpg">
                     <aside class="notes">
-                        reality
-
-                        side note:
-                        yes,  there are source maps in Chrome Canary and Firefox for example but only if you’re able to minify your javascript with the Google Closure compiler
+                        (reality)<br/>
+                        yes, there are source maps in Chrome Canary and Firefox<br/>
+                        but only if you’re able to minify your javascript with the Google Closure compiler (afaik)
                     </aside>
                 </section>
 
@@ -212,10 +199,13 @@
 
                     <aside class="notes">
                         ideas:
-                        understand how errors work in javascript and get around it’s flaws
-                        name your anonymous functions
-                        message bus system to centralize module communication (Wreqr: Commands, RequestResponse, EventAggregator)
-                        log everything
+                        <ul>
+                            <li>understand errors work and their caveats</li>
+                            <li>name your anonymous functions</li>
+                            <li>message bus system (Wreqr: Commands, RequestResponse, EventAggregator)</li>
+                            <li>log everything</li>
+                            <li>other tools</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -253,14 +243,16 @@
 
                     <aside class="notes">
                         Incompatibilities:
-                        fileName is not standard
-                        lineNumber ist not standard
-                        columnNumber only sometimes available
-                        IE breaks differently with every version
-                        Some browsers put properties on instances other on prototype
-                        Format of the stacktrace varies accross browsers
-                        Chrome uses line, Firefox uses lineNumber
-                        Not all properties will be visible in the debugger (not always treated as object)
+                        <ul>
+                            <li>fileName is not standard</li>
+                            <li>lineNumber ist not standard</li>
+                            <li>columnNumber only sometimes available</li>
+                            <li>IE breaks differently with every version</li>
+                            <li>Some browsers put properties on instances other on prototype</li>
+                            <li>Format of the stacktrace varies accross browsers</li>
+                            <li>Chrome uses line, Firefox uses lineNumber</li>
+                            <li>Not all properties will be visible in the debugger (not always treated as object)</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -293,9 +285,11 @@
                         </ul>
 
                         <aside class="notes">
-                            native code (the javascript runtime)
-                            [click] at some point executes a function foo
-                            [click] which executes a function bar
+                            <ul>
+                                <li>native code (the javascript runtime)</li>
+                                <li>[click] at some point executes a <code>function foo(</code>)</li>
+                                <li>[click] which executes a <code>function bar()</code></li>
+                            </ul>
                         </aside>
                     </section>
                     <section class="diagram">
@@ -316,7 +310,7 @@
                         </ul>
 
                         <aside class="notes">
-                            now an error happens in bar
+                            now an error happens in <code>function bar()</code>
                         </aside>
                     </section>
 
@@ -340,7 +334,7 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            it bubbles up all the way through foo
+                            it bubbles up all the way through <code>foo()</code>
                         </aside>
                     </section>
                     <section class="diagram">
@@ -410,9 +404,9 @@
                         </ul>
 
                         <aside class="notes">
-                            delegate it to window on error
-
-                            errors on a website should not crash the browser process
+                            delegate it to window on error<br/>
+                            <br/>
+                            errors on a website should not crash the browser process<br/>
                             -> hence global default error handler
                         </aside>
                     </section>
@@ -432,7 +426,8 @@
                     <h5>the way of the error - <em>async edition</em></h5>
 
                     <aside class="notes">
-                        Now this get's even more interesting when we cross the "asynchronous boundary"
+                        Now this get's even more interesting when we cross<br/>
+                        the "asynchronous boundary"
                     </aside>
                 </section>
 
@@ -454,10 +449,13 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            again we have our function foo that calls addEventListener or setTimeout or any other native function
-                            that accepts a callback that will be executed at some point in time
-
-                            at some point the user clicks something or the timeout elapses and our callback gets executed
+                            <p>
+                                again we have our function foo that calls addEventListener or setTimeout or any other native function
+                                that accepts a callback that will be executed at some point in time
+                            </p>
+                            <p>
+                                when the user then clicks something or the timeout elapses our callback gets executed
+                            </p>
                         </aside>
                     </section>
                     <section class="diagram">
@@ -524,7 +522,10 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            So the native code propagates the error back to foo, because that’s the method that called setTimeout / addEventListener, right?
+                            <p>
+                                So the native code propagates the error back to <code>foo</code>,
+                                because that’s the method that called setTimeout / addEventListener, right?
+                            </p>
                         </aside>
                     </section>
                     <section class="diagram">
@@ -548,11 +549,14 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            wrong!
-                            The native code does not know where to put the error, since it’s a completely new execution context
-                            So the error will be delegated directly to window on error
-
-                            Let me show you this in a little example…
+                            <strong>wrong!</strong>
+                            <p>
+                                The native code does not know where to put the error, since it’s a completely new execution context
+                                So the error will be delegated directly to window on error
+                            </p>
+                            <p>
+                                [click] But let me show you this in a little example…
+                            </p>
                         </aside>
                     </section>
                 </section>
@@ -561,7 +565,17 @@
                     <h2>demo</h2>
                     <h5>error bubbling - async edition</h5>
                     <aside class="notes">
-                        let's see how this works in a little example
+                        [fade to black if sample not in slides]
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>watch your stacks!</h2>
+                    <aside class="notes">
+                        <p>
+                            stacktraces can really help you figure out what was actually going on, when things went south<br/>
+                            So get them right!
+                        </p>
                     </aside>
                 </section>
 
@@ -576,10 +590,14 @@
                     <p>what's the environment?</p>
 
                     <aside class="notes">
-                        what “page” did the user navigate to?
-                        what payloads did my server deliver?
-                        what functionality caused the issue?
-                        what installed extensions could have caused the issue?
+                        <ul>
+                            <li>what “page” did the user navigate to?</li>
+                            <li>what payloads did my server deliver?</li>
+                            <li>what functionality caused the issue?</li>
+                            <li>what installed browser extensions could have caused the issue?</li>
+                            <li>cookie to switch dev / prod mode for specific sessions</li>
+                            <li>create browser extension for common platform related tasks</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -587,8 +605,12 @@
                     <h2>debug-friendly software design</h2>
                     <p>Message Bus</p>
                     <aside class="notes">
-                        one thing we did: message bus
+                        one thing we did at trivago message bus
                     </aside>
+                </section>
+
+                <section>
+                    <h3>TODO: diagram describing the MessageBus</h3>
                 </section>
 
                 <section data-background="img/trackjs.png" data-background-size="95%"></section>
@@ -602,7 +624,7 @@
                     <p><span class="bullet yes">&#10003;​</span> log everything</p>
                     <p>
                         <span class="bullet yes">&#10003;​</span> handle your errors<br/>
-                        <small>(and/or use libraries/software like {Track:js}, stacktrace.js, tracekit.js)</small>
+                        <small>(and/or use tools like {Track:js}, stacktrace.js, TraceKit)</small>
                     </p>
                     <aside class="notes">
 

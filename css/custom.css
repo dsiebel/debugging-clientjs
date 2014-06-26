@@ -1,3 +1,7 @@
+.reveal ul {
+    list-style-type: none;
+}
+
 
 .bullet {
     margin-right: 25px;
