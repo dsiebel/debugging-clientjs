@@ -52,6 +52,11 @@
     color: #eee8d5;
 }
 
+.diagram .box.native small {
+    color: #eee8d5;
+    text-decoration: underline;
+}
+
 .diagram .box.error {
     background-color: #dc322f;
     color: #eee8d5;
