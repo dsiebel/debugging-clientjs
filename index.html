@@ -1,0 +1,656 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <title>Debugging client-side JavaScript - enterJS 2014</title>
+
+        <meta name="description" content="Debugging client-side JavaScript - enterJS 2014">
+        <meta name="author" content="Cominik Siebel">
+
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <link rel="stylesheet" href="css/reveal.min.css">
+        <link rel="stylesheet" href="css/theme/solarized_custom.css">
+        <link rel="stylesheet" href="css/custom.css">
+
+        <!-- For syntax highlighting -->
+        <link rel="stylesheet" href="lib/css/zenburn.css">
+
+        <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+        <script>
+            if( window.location.search.match( /print-pdf/gi ) ) {
+                var link = document.createElement( 'link' );
+                link.rel = 'stylesheet';
+                link.type = 'text/css';
+                link.href = 'css/print/pdf.css';
+                document.getElementsByTagName( 'head' )[0].appendChild( link );
+            }
+        </script>
+
+        <!--[if lt IE 9]>
+        <script src="lib/js/html5shiv.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="reveal">
+
+            <!-- Any section element inside of this container is displayed as a slide -->
+            <div class="slides">
+
+                <section>
+                    <h1>"Da is' was kaputt!"</h1>
+                    <h3>debugging client-side JavaScript</h3>
+                    <p>
+                        <small>by Dominik Siebel & Jan van Thoor</small>
+                    </p>
+
+                    <aside class="notes">
+                        Folien auf englisch, talk auf deutsch
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>dom</h2>
+                    <p>
+                        Dominik Siebel<br/>
+                        Software Engineer<br/>
+                        <img src="img/trivago_logo_small.png"/><br/>
+                        trivago
+                    </p>
+                    <p>
+                        @milchjieper<br/>
+                        github.com/dsiebel
+                    </p>
+                </section>
+
+                <section>
+                    <h2>jan</h2>
+                    <p>
+                        Jan van Thoor<br/>
+                        Software Engineer<br/>
+                        <img src="img/trivago_logo_small.png"/><br/>
+                        trivago
+                    </p>
+                    <p>
+                        @janvanthoor<br/>
+                        github.com/janvt
+                    </p>
+                </section>
+
+                <section>
+                    <h2>agenda</h2>
+                    <p>debugging javascript</p>
+                    <p>the debuggable application</p>
+                    <aside class="notes">
+                        first part: debugging javascript with chrome dev tools
+                        second part: the debuggable application
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>history</h2>
+                    <p>
+
+                    </p>
+                    <aside class="notes">
+                        how did we get here?
+
+                        1. come to work
+                        2. svn up, git pull, composer install, bower install, vagrant up
+                        3. get coffee
+                    </aside>
+                </section>
+
+    <!--
+                <section data-background="img/trivago_dev.png" data-background-size="1400px">
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+    -->
+
+                <section data-background="img/trivago_dev.png" data-background-size="1400px">
+                    <img src="img/alert_huhu.png" class="fragment fade-in"/>
+                    <aside class="notes">
+                        4. open your dev environment and ...
+
+                        Begrüßung: "HUHU"
+
+                        ärgerlich, wenn das auf dem test system passiert
+                        peinlich, wenn das auf dem live system passiert
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>debugging javascript</h2>
+                    <p><span class="bullet no">&#10007;​</span> alert()</p>
+                    <p><span class="bullet no">&#10007;​</span> document.write()</p>
+                    <p><span class="bullet no">&#10007;​</span> console.debug() / console.log()</p>
+                </section>
+
+                <!--
+                <section>
+                    <h2>debugging javascript</h2>
+                    <p>
+                        <ul>
+                            <li><del>alert()</del></li>
+                            <li><del>document.write()</del></li>
+                            <li><del>console.debug() / console.log()</del></li>
+                        </ul>
+                    </p>
+                </section>
+                -->
+
+                <section>
+                    <h2>debugging JavaScript</h2>
+                    <h5>in 2014</h5>
+                    <p><span class="bullet yes">&#10003;​</span> Breakpoints & the debugger; statement</p>
+                    <p><span class="bullet yes">&#10003;​</span> Command Line API</p>
+                    <p><span class="bullet yes">&#10003;​</span> Source Maps</p>
+                </section>
+
+                <section>
+                    <h2>demo</h2>
+                    <h5>debugging JavaScript in 2014</h5>
+                </section>
+
+                <section>
+                    <h2>"The javascript doesn't work in IE7"</h2>
+                    <h5>- Quality assurance</h5>
+
+                    <aside class="notes">
+                        IE7 doesn’t have no debug tools (at least none that are working properly)
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>"Something's <del>fucky</del> broken"</h2>
+                    <h5>- Customer</h5>
+
+                    <aside class="notes">
+                        JS not always easy to debug in production b/c of minifcation, compression, ...
+                    </aside>
+                </section>
+
+                <section>
+                    <code class="sol-orange">
+                        TypeError: e is undefined<br/>
+                        main.js<br/>
+                        line 1
+                    </code>
+
+                    <aside class="notes">
+                        favourite: minified javascript
+                        follow link to error in your console and you’ll see ...
+                    </aside>
+                </section>
+
+                <section data-background="img/code.jpg">
+                    <aside class="notes">
+                        this! (taken from enterjs homepage)
+                    </aside>
+                </section>
+
+                <section data-background="img/code_trvjs2.jpg">
+                    <aside class="notes">
+                        reality
+
+                        side note:
+                        yes,  there are source maps in Chrome Canary and Firefox for example but only if you’re able to minify your javascript with the Google Closure compiler
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>the debuggable application</h2>
+                    <h5>how can my application help me debug itself?</h5>
+
+                    <aside class="notes">
+                        ideas:
+                        understand how errors work in javascript and get around it’s flaws
+                        name your anonymous functions
+                        message bus system to centralize module communication (Wreqr: Commands, RequestResponse, EventAggregator)
+                        log everything
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>understand <code>{object Error}</code></h2>
+                </section>
+
+                <section>
+                    <!--
+                    <h2>know your Error</h2>
+                    -->
+                    <p>
+                        <img src="img/mdn_logo.png"/>
+                        <img class="fragment fade-in" src="img/mdn_error_constructor.png"/>
+                    </p>
+                    <code class="fragment fade-in">
+                        message, name, description, number, fileName, lineNumber, columnNumber, stack, toSource(), toString()
+                    </code>
+                </section>
+
+                <section>
+                    <!--
+                    <h2>know your Error</h2>
+                    -->
+                    <h3>but be aware</h3>
+                    <p class="fragment fade-in">
+                        <img src="img/mdn_error_warn1.png"/>
+                    </p>
+                    <p class="fragment fade-in">
+                        <img src="img/mdn_error_warn2.png"/>
+                    </p>
+                    <p class="fragment fade-in">
+                        and this is just the beginning ...
+                    </p>
+
+                    <aside class="notes">
+                        Incompatibilities:
+                        fileName is not standard
+                        lineNumber ist not standard
+                        columnNumber only sometimes available
+                        IE breaks differently with every version
+                        Some browsers put properties on instances other on prototype
+                        Format of the stacktrace varies accross browsers
+                        Chrome uses line, Firefox uses lineNumber
+                        Not all properties will be visible in the debugger (not always treated as object)
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>demo</h2>
+                    <h5>handling Error in JavaScript</h5>
+                </section>
+
+                <section>
+                    <h2>Error bubbling</h2>
+                    <h5>the path of the Error</h5>
+                </section>
+
+                <section>
+                    <section class="diagram">
+                        <ul class="bubbling level-3">
+                            <li class="">
+                                <span class="box native">native code</span>
+                            </li>
+                            <li class="fragment fade-in">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box"><code>function foo()</code></span>
+                            </li>
+                            <li class="fragment fade-in">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+
+                        <aside class="notes">
+                            native code (the javascript runtime)
+                            [click] at some point executes a function foo
+                            [click] which executes a function bar
+                        </aside>
+                    </section>
+                    <section class="diagram">
+                        <ul class="bubbling level-3">
+                            <li class="">
+                                <span class="box native">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box"><code>function foo()</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+
+                        <aside class="notes">
+                            now an error happens in bar
+                        </aside>
+                    </section>
+
+                    <!--
+                        START BUBBLE UP
+                    -->
+                    <section class="diagram">
+                        <ul class="bubbling level-3">
+                            <li class="">
+                                <span class="box native">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box error"><code>function foo()</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            it bubbles up all the way through foo
+                        </aside>
+                    </section>
+                    <section class="diagram">
+                        <ul class="bubbling level-3">
+                            <li class="">
+                                <span class="box native error">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error"><code>function foo()</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            back to the native code
+                        </aside>
+                    </section>
+                    <section class="diagram">
+                        <ul class="bubbling level-4">
+                            <li class="">
+                                <span class="box">?</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box native error">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error"><code>function foo()</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+
+                        <aside class="notes">
+                            and what does the native code do?
+                        </aside>
+                    </section>
+                    <section class="diagram">
+                        <ul class="bubbling level-4">
+                            <li class="">
+                                <span class="box error"><code>window.onerror</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box native error">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error"><code>function foo()</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+
+                        <aside class="notes">
+                            delegate it to window on error
+
+                            errors on a website should not crash the browser process
+                            -> hence global default error handler
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>demo</h2>
+                    <h5>error bubbling</h5>
+
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>error bubbling</h2>
+                    <h5>the way of the error - <em>async edition</em></h5>
+
+                    <aside class="notes">
+                        Now this get's even more interesting when we cross the "asynchronous boundary"
+                    </aside>
+                </section>
+
+                <section>
+                    <section class="diagram">
+                        <ul class="bubbling level-3">
+                            <li class="">
+                                <span class="box"><code>function foo()</code></span>
+                            </li>
+                            <li class="fragment fade-in">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box native">native code</span>
+                            </li>
+                            <li class="fragment fade-in">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            again we have our function foo that calls addEventListener or setTimeout or any other native function
+                            that accepts a callback that will be executed at some point in time
+
+                            at some point the user clicks something or the timeout elapses and our callback gets executed
+                        </aside>
+                    </section>
+                    <section class="diagram">
+                        <ul class="bubbling level-3">
+                            <li class="">
+                                <span class="box"><code>function foo()</code></span>
+                            </li>
+                            <!--
+                                @todo dsiebel: visualize async boundary!
+                            -->
+                            <li class="">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box native">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            and an error happens in our callback
+                        </aside>
+                    </section>
+
+                    <!--
+                        START BUBBLE UP
+                    -->
+                    <section class="diagram">
+                        <ul class="bubbling level-3">
+                            <li class="">
+                                <span class="box"><code>function foo()</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box down">&#10149;</span>
+                                <span class="box native error">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            again the error bubbles all the way up to the native code
+                        </aside>
+                    </section>
+                    <section class="diagram">
+                        <ul class="bubbling level-3">
+                            <li class="">
+                                <span class="box ignored"><code>function foo()</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box native error">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            So the native code propagates the error back to foo, because that’s the method that called setTimeout / addEventListener, right?
+                        </aside>
+                    </section>
+                    <section class="diagram">
+                        <ul class="bubbling level-4">
+                            <li class="">
+                                <span class="box error"><code>window.onerror</code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box ignored"><code><del>function foo()</del></code></span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box native error">native code</span>
+                            </li>
+                            <li class="">
+                                <span class="before-box up">&#10150;</span>
+                                <span class="box error">
+                                    <code>function bar()</code>
+                                </span>
+                            </li>
+                        </ul>
+                        <aside class="notes">
+                            wrong!
+                            The native code does not know where to put the error, since it’s a completely new execution context
+                            So the error will be delegated directly to window on error
+
+                            Let me show you this in a little example…
+                        </aside>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>demo</h2>
+                    <h5>error bubbling - async edition</h5>
+                    <aside class="notes">
+                        let's see how this works in a little example
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>but wait, there's more</h2>
+                </section>
+
+                <section>
+                    <h2>Stacktraces aren't everything</h2>
+                    <p>what was the user doing?</p>
+                    <p>what state was my application in?</p>
+                    <p>what's the environment?</p>
+
+                    <aside class="notes">
+                        what “page” did the user navigate to?
+                        what payloads did my server deliver?
+                        what functionality caused the issue?
+                        what installed extensions could have caused the issue?
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>debug-friendly software design</h2>
+                    <p>Message Bus</p>
+                    <aside class="notes">
+                        one thing we did: message bus
+                    </aside>
+                </section>
+
+                <section data-background="img/trackjs.png" data-background-size="95%"></section>
+
+                <section>
+                    <h2>the debuggable application</h2>
+                    <h5>conclusion</h5>
+                    <p><span class="bullet yes">&#10003;​</span> know your Error</p>
+                    <p><span class="bullet yes">&#10003;​</span> name your anonymous functions</p>
+                    <p><span class="bullet yes">&#10003;​</span> centralized system for module communication (MessageBus)</p>
+                    <p><span class="bullet yes">&#10003;​</span> log everything</p>
+                    <p>
+                        <span class="bullet yes">&#10003;​</span> handle your errors<br/>
+                        <small>(and/or use libraries/software like {Track:js}, stacktrace.js, tracekit.js)</small>
+                    </p>
+                    <aside class="notes">
+
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>that's it!</h2>
+                </section>
+
+                <section>
+                    <h2>questions?</h2>
+                </section>
+
+                <section>
+                    <h2>thanks!</h2>
+                </section>
+            </div>
+        </div>
+
+        <script src="lib/js/head.min.js"></script>
+        <script src="js/reveal.min.js"></script>
+
+        <script>
+
+            // Full list of configuration options available here:
+            // https://github.com/hakimel/reveal.js#configuration
+            Reveal.initialize({
+                controls: true,
+                progress: true,
+                history: true,
+                center: true,
+                width: 1240,
+                height: 700,
+                transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
+                backgroundTransition: 'none',
+
+                // Optional libraries used to extend on reveal.js
+                dependencies: [
+                    { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+                    { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+                    { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+                    { src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+                    { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+                ]
+            });
+
+        </script>
+    </body>
+</html>

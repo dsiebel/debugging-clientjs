@@ -1,0 +1,60 @@
+
+.bullet {
+    margin-right: 25px;
+}
+
+.bullet.no {
+    color: #dc322f;
+}
+.bullet.yes {
+    color: #859900;
+}
+
+.diagram {
+
+}
+
+.diagram ul {
+    list-style-type: none;
+}
+
+.diagram ul.level-1 { margin-left: 0px; }
+.diagram ul.level-2 { margin-left: -50px; }
+.diagram ul.level-3 { margin-left: -100px; }
+.diagram ul.level-4 { margin-left: -150px; }
+.diagram ul.level-5 { margin-left: -200px; }
+
+.diagram ul li:nth-child(1) { margin-left: 0; }
+.diagram ul li:nth-child(2) { margin-left: 100px; }
+.diagram ul li:nth-child(3) { margin-left: 200px; }
+.diagram ul li:nth-child(4) { margin-left: 300px; }
+.diagram ul li:nth-child(5) { margin-left: 400px; }
+
+.diagram .box {
+    font-size: 28px;
+    display: block;
+    width: 240px;
+    text-align: center;
+    vertical-align: middle;
+    padding: 7px 5px 7px 5px;
+    color: #657b83;
+    border: 1px outset #657b83;
+    box-shadow: 2px 3px #839496;
+    background-color: #eee8d5;
+}
+
+.diagram .box.native {
+    background-color: #268bd2;
+    color: #eee8d5;
+}
+
+.diagram .box.error {
+    background-color: #dc322f;
+    color: #eee8d5;
+}
+
+.diagram .box.ignored {
+    border: 2px dashed #93a1a1;
+    box-shadow: none;
+    color: #93a1a1;
+}

@@ -1,0 +1,6 @@
+Da is' was kaputt! - Debugging client-side javascript - IN PRODUCTION!
+
+"Works on my machine" - wie oft hat man diesen Satz als Entwickler schon gehört oder sogar selbst verwendet? Test Driven Development, hohe Testabdeckung und ausgereifte Qualitätssicherungsmaßnahmen sind gut, aber:
+Was tun, wenn das Kind bereits in den Brunnen gefallen ist?
+Was, wenn die Applikation, die Webseite bereits auf die Produktiv-Server ausgeliefert wurde und der Kunde vermeldet: "Da is' was kaputt!"?
+Dieser Vortrag soll zeigen, wie man Fehler in Javascript Anwendungen findet und vor allem wie uns die Anwendung selbst dabei unterstützen kann. Nicht nur während der Entwicklung sondern auch in Produktion.
