@@ -47,7 +47,8 @@
                     <h1>"Da is' was kaputt!"</h1>
                     <h3>debugging client-side JavaScript</h3>
                     <p>
-                        <small>by Dominik Siebel & Jan van Thoor</small>
+                        <br/>
+                        <small>Dominik Siebel & Jan van Thoor</small>
                     </p>
 
                     <aside class="notes">
@@ -116,8 +117,8 @@
                 </section>
     -->
 
-                <section data-background="img/trivago_dev.png" data-background-size="1400px">
-                    <img src="img/alert_huhu.png" class="fragment fade-in"/>
+                <section data-background="img/trivago_dev.png" data-background-size="75%">
+                    <img src="img/alert_huhu_obj.png" class="fragment fade-in"/>
                     <aside class="notes">
                         open your dev environment and ...<br/>
                         <blockquote>"HUHU"</blockquote>
@@ -129,10 +130,38 @@
                 </section>
 
                 <section>
-                    <h2>debugging javascript</h2>
-                    <p><span class="bullet no">&#10007;​</span> alert()</p>
-                    <p><span class="bullet no">&#10007;​</span> document.write()</p>
-                    <p><span class="bullet no">&#10007;​</span> console.debug() / console.log()</p>
+                    <section>
+                        <h2>debugging javascript</h2>
+                        <p><span class="bullet no">&#10007;​</span> alert()</p>
+                        <p><span class="bullet no">&#10007;​</span> document.write() | $.fn.html() | $.fn.text() </p>
+                        <p><span class="bullet no">&#10007;​</span> console.(debug|log|warn|error|trace)()</p>
+                    </section>
+                    <section>
+                        <img src="img/alert_huhu_obj.png"/>
+                        <aside class="notes">
+                            welche informationen soll man daraus gewinnen?<br/>
+                            (außer zu verifizieren, dass ein bestimmtes Stück code ausgeführt wurde)
+                        </aside>
+                    </section>
+                    <section>
+                        <img src="img/console_debug_obj.png"/>
+                        <aside class="notes">
+                            Möglichkeit Objekte zu debuggen<br/>
+                            hat <em>auch</em> ihre Besonderheiten<br/>
+                            [siehe code]<br/>
+                            immernoch keine Informationen über den context zum Ausführungszeitpunkts
+                        </aside>
+                    </section>
+                    <section>
+                        <h2>debugging javascript</h2>
+                        <p><span class="bullet no">&#10007;​</span> alert()</p>
+                        <p><span class="bullet no">&#10007;​</span> document.write()</p>
+                        <p><span class="bullet no">&#10007;​</span> console.debug|log|warn|error|trace()</p>
+                        <aside class="notes">
+                            Zusammengefasst:<br/>
+                            Da muss es doch was besseres geben!
+                        </aside>
+                    </section>
                 </section>
 
                 <section>
@@ -141,6 +170,9 @@
                     <p><span class="bullet yes">&#10003;​</span> Breakpoints & the debugger; statement</p>
                     <p><span class="bullet yes">&#10003;​</span> Command Line API</p>
                     <p><span class="bullet yes">&#10003;​</span> Source Maps</p>
+                    <aside class="notes">
+                        gibt es auch!
+                    </aside>
                 </section>
 
                 <section>
