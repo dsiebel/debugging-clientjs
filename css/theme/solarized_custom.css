@@ -95,7 +95,7 @@ small {
   transition: color .15s ease; }
 
 .reveal a:not(.image):hover {
-  color: #78b9e6;
+  text-decoration: underline;
   text-shadow: none;
   border: none; }
 
