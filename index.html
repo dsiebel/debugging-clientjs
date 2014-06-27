@@ -242,20 +242,19 @@
                 </section>
 
                 <section>
-                    <h2>understand <code>{object Error}</code></h2>
+                    <h2><code>{object Error}</code></h2>
                 </section>
 
                 <section>
-                    <!--
-                    <h2>know your Error</h2>
-                    -->
+                    <p><img src="img/mdn_logo.png"/></p>
+                    <pre class="fragment fade-in"><code class="javascript">
+                        new Error([message[, fileName[, lineNumer]]])
+                    </code></pre>
                     <p>
-                        <img src="img/mdn_logo.png"/>
-                        <img class="fragment fade-in" src="img/mdn_error_constructor.png"/>
+                        <code class="fragment fade-in">
+                            message, name, description, number, fileName, lineNumber, columnNumber, stack, toSource(), toString()
+                        </code>
                     </p>
-                    <code class="fragment fade-in">
-                        message, name, description, number, fileName, lineNumber, columnNumber, stack, toSource(), toString()
-                    </code>
                 </section>
 
                 <section>
@@ -302,7 +301,7 @@
                     <section class="diagram">
                         <ul class="bubbling level-3">
                             <li class="">
-                                <span class="box native">native code</span>
+                                <span class="box native">[native code]</span>
                             </li>
                             <li class="fragment fade-in">
                                 <span class="icon icon-next"></span>
@@ -327,7 +326,7 @@
                     <section class="diagram">
                         <ul class="bubbling level-3">
                             <li class="">
-                                <span class="box native">native code</span>
+                                <span class="box native">[native code]</span>
                             </li>
                             <li class="">
                                 <span class="icon icon-next"></span>
@@ -352,7 +351,7 @@
                     <section class="diagram">
                         <ul class="bubbling level-3">
                             <li class="">
-                                <span class="box native">native code</span>
+                                <span class="box native">[native code]</span>
                             </li>
                             <li class="">
                                 <span class="icon icon-next"></span>
@@ -372,7 +371,7 @@
                     <section class="diagram">
                         <ul class="bubbling level-3">
                             <li class="">
-                                <span class="box native error">native code</span>
+                                <span class="box native error">[native code]</span>
                             </li>
                             <li class="">
                                 <span class="icon icon-prev"></span>
@@ -396,7 +395,7 @@
                             </li>
                             <li class="">
                                 <span class="icon icon-prev"></span>
-                                <span class="box native error">native code</span>
+                                <span class="box native error">[native code]</span>
                             </li>
                             <li class="">
                                 <span class="icon icon-prev"></span>
@@ -421,7 +420,7 @@
                             </li>
                             <li class="">
                                 <span class="icon icon-prev"></span>
-                                <span class="box native error">native code</span>
+                                <span class="box native error">[native code]</span>
                             </li>
                             <li class="">
                                 <span class="icon icon-prev"></span>
@@ -436,7 +435,7 @@
                         </ul>
 
                         <aside class="notes">
-                            delegate it to window on error<br/>
+                            pass it to window on error<br/>
                             <br/>
                             errors on a website should not crash the browser process<br/>
                             -> hence global default error handler
@@ -472,7 +471,7 @@
                             <li class="fragment fade-in">
                                 <span class="icon icon-next"></span>
                                 <span class="box native">
-                                    native code
+                                    [native code]
                                     <small class="sol-base">asynchronous boundary</small>
                                 </span>
                             </li>
@@ -501,7 +500,7 @@
                             <li class="">
                                 <span class="icon icon-next"></span>
                                 <span class="box native">
-                                    native code
+                                    [native code]
                                     <small class="sol-base">asynchronous boundary</small>
                                 </span>
                             </li>
@@ -528,7 +527,7 @@
                             <li class="">
                                 <span class="icon icon-next"></span>
                                 <span class="box native error">
-                                    native code
+                                    [native code]
                                     <small class="sol-base">asynchronous boundary</small>
                                 </span>
                             </li>
@@ -551,7 +550,7 @@
                             <li class="">
                                 <span class="icon icon-prev"></span>
                                 <span class="box native error">
-                                    native code
+                                    [native code]
                                     <small class="sol-base">asynchronous boundary</small>
                                 </span>
                             </li>
@@ -581,7 +580,7 @@
                             <li class="">
                                 <span class="icon icon-prev"></span>
                                 <span class="box native error">
-                                    native code
+                                    [native code]
                                     <small class="sol-base">asynchronous boundary</small>
                                 </span>
                             </li>
@@ -719,8 +718,8 @@
                 progress: true,
                 history: true,
                 center: true,
-                width: 1240,
-                height: 700,
+                width: '95%',
+                height: '95%',
                 transition: 'none', // default/cube/page/concave/zoom/linear/fade/none
                 backgroundTransition: 'none',
 

@@ -36,11 +36,12 @@
 
 .diagram .box {
     font-size: 42px;
+    line-height: 42px;
     display: block;
     width: 380px;
     text-align: center;
     vertical-align: middle;
-    padding: 7px 5px 7px 5px;
+    padding: 7px 5px 10px 5px;
     color: #657b83;
     border: 1px outset #657b83;
     box-shadow: 2px 3px #839496;
