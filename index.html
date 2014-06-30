@@ -155,8 +155,8 @@
                     <section>
                         <h2>debugging javascript</h2>
                         <p><span class="bullet no">&#10007;​</span> alert()</p>
-                        <p><span class="bullet no">&#10007;​</span> document.write()</p>
-                        <p><span class="bullet no">&#10007;​</span> console.debug|log|warn|error|trace()</p>
+                        <p><span class="bullet no">&#10007;​</span> document.write() | $.fn.html() | $.fn.text() </p>
+                        <p><span class="bullet no">&#10007;​</span> console.(debug|log|warn|error|trace)()</p>
                         <aside class="notes">
                             Zusammengefasst:<br/>
                             Da muss es doch was besseres geben!
@@ -206,8 +206,7 @@
                     </code>
 
                     <aside class="notes">
-                        minified javascript<br/>
-                        follow link to error in your console and you’ll see ...<br/>
+                        Meaning, that if we open the code in production it looks a little something like ...<br/>
                     </aside>
                 </section>
 
@@ -228,8 +227,9 @@
                 <section>
                     <h2>the debuggable application</h2>
                     <h5>how can my application help me debug itself?</h5>
-
                     <aside class="notes">
+                        <!--
+                        <br/>
                         ideas:
                         <ul>
                             <li>understand errors work and their caveats</li>
@@ -238,23 +238,50 @@
                             <li>log everything</li>
                             <li>other tools</li>
                         </ul>
+                        -->
+                    </aside>
+                </section>
+
+                <section>
+                    <h2>watch your stacks!</h2>
+                    <aside class="notes">
+                        <p>
+                            first answer: good stacktraces<br/>
+                            How do we do good stacktraces?
+                        </p>
+                        <p>
+                            stacktraces can really help you figure out what was actually going on, when things went south<br/>
+                            So get them right!
+                        </p>
                     </aside>
                 </section>
 
                 <section>
                     <h2><code>{object Error}</code></h2>
+                    <aside class="notes">
+                        First of all understand how javascript errors work in the browser<br/>
+                    </aside>
                 </section>
 
                 <section>
                     <p><img src="img/mdn_logo.png"/></p>
-                    <pre class="fragment fade-in"><code class="javascript">
-                        new Error([message[, fileName[, lineNumer]]])
-                    </code></pre>
                     <p>
-                        <code class="fragment fade-in">
+                        <code>
+                            <span class="sol-blue">new</span> Error([message[, fileName[, lineNumer]]])
+                        </code>
+                    </p>
+
+                    <p class="fragment fade-in">
+                        <br/>
+                        <code>
                             message, name, description, number, fileName, lineNumber, columnNumber, stack, toSource(), toString()
                         </code>
                     </p>
+                    <aside class="notes">
+                        This is the error object according to MDN [click]<br/>
+                        constructor: message, fileName, lineNumber<br/>
+                        properties: message, name, description, stack
+                    </aside>
                 </section>
 
                 <section>
@@ -273,6 +300,8 @@
                     </p>
 
                     <aside class="notes">
+                        but it's not that easy<br/>
+                        <br/>
                         Incompatibilities:
                         <ul>
                             <li>fileName is not standard</li>
@@ -290,6 +319,11 @@
                 <section>
                     <h2>demo</h2>
                     <h5>handling Error in JavaScript</h5>
+                    <aside class="notes">
+                        Lets see how this looks in the browser<br/>
+                        <br/>
+                        browser comparison, thrown vs unthrown
+                    </aside>
                 </section>
 
                 <section>
@@ -446,9 +480,18 @@
                 <section>
                     <h2>demo</h2>
                     <h5>error bubbling</h5>
+                </section>
+
+                <section>
+                    <h2>error bubbling</h2>
+                    <h5>conclusion</h5>
+                    <p><span class="bullet yes">&#10003;​</span> catch your errors before window.onerror</p>
+                    <p>
+                        <span class="bullet yes">&#10003;​</span> name your anonymous functions<br/>
+                        <small>(careful in older IEs, though)</small>
+                    </p>
 
                     <aside class="notes">
-
                     </aside>
                 </section>
 
@@ -613,16 +656,6 @@
                 </section>
 
                 <section>
-                    <h2>watch your stacks!</h2>
-                    <aside class="notes">
-                        <p>
-                            stacktraces can really help you figure out what was actually going on, when things went south<br/>
-                            So get them right!
-                        </p>
-                    </aside>
-                </section>
-
-                <section>
                     <h2>but wait, there's more</h2>
                 </section>
 
@@ -646,14 +679,26 @@
 
                 <section>
                     <h2>debug-friendly software design</h2>
-                    <p>Message Bus</p>
+                    <h5>e.g. Mediator Pattern</h5>
                     <aside class="notes">
-                        one thing we did at trivago message bus
+                        one thing we did at trivago: implement messaging patterns<br/>
+                        mediator pattern w/ top level mediator<br/>
+                        comparable to idea behind facebook's flux
                     </aside>
                 </section>
 
                 <section>
-                    <h3>TODO: diagram describing the MessageBus</h3>
+                    <img src="img/mediator.png"/>
+                </section>
+
+                <section>
+                    <h2>tooling</h2>
+                    <h5>e.g. {Track:js}</h5>
+                    <aside class="notes">
+                        also, there are a lot of tools to aid in debugging<br/>
+                        especially when it comes to error context tracking<br/>
+                        {Track:js} is one example
+                    </aside>
                 </section>
 
                 <section data-background="img/trackjs.png" data-background-size="95%"></section>
@@ -662,15 +707,16 @@
                     <h2>the debuggable application</h2>
                     <h5>conclusion</h5>
                     <p><span class="bullet yes">&#10003;​</span> know your {object Error}</p>
+                    <p><span class="bullet yes">&#10003;​</span> handle your errors early</p>
                     <p><span class="bullet yes">&#10003;​</span> name your anonymous functions</p>
-                    <p><span class="bullet yes">&#10003;​</span> log everything</p>
+
                     <p>
-                        <span class="bullet yes">&#10003;​</span> build your application to help you debug
+                        <span class="bullet yes">&#10003;​</span> build your application to help you debug<br/>
                         <small>e.g. with a centralized system for module communication (MessageBus)</small>
                     </p>
                     <p>
-                        <span class="bullet yes">&#10003;​</span> handle your errors<br/>
-                        <small>(and/or use tools like {Track:js}, stacktrace.js, TraceKit)</small>
+                        <span class="bullet yes">&#10003;​</span> log everything / get error context<br/>
+                        <small>(e.g. use tools like {Track:js}, stacktrace.js, TraceKit)</small>
                     </p>
                     <aside class="notes">
 
