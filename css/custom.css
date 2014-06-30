@@ -22,7 +22,7 @@
     list-style-type: none;
 }
 
-.diagram ul.level-1 { margin-left: 0px; }
+.diagram ul.level-1 { margin-left: 0; }
 .diagram ul.level-2 { margin-left: -50px; }
 .diagram ul.level-3 { margin-left: -100px; }
 .diagram ul.level-4 { margin-left: -150px; }
