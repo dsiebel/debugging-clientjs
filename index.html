@@ -43,30 +43,25 @@
             <!-- Any section element inside of this container is displayed as a slide -->
             <div class="slides">
 
-                <section>
-                    <h1>"Da is' was kaputt!"</h1>
-                    <h3>debugging client-side JavaScript</h3>
-                    <p>
-                        <br/>
-                        <small>Dominik Siebel & Jan van Thoor</small>
-                    </p>
-
-                    <aside class="notes">
-                        Folien auf englisch, talk auf deutsch
-                    </aside>
-                </section>
+            <section>
+                <h1>enterJS 2014</h1>
+                <aside class="notes">
+                    Folien auf englisch, talk auf deutsch
+                </aside>
+            </section>
 
                 <section>
                     <h2>dom</h2>
                     <p>
                         Dominik Siebel<br/>
                         Software Engineer<br/>
-                        <img src="img/trivago_logo_small.png"/><br/>
+                        <br/>
+                        <img src="img/trivago_logo_small_2.png"/><br/>
                         trivago
                     </p>
                     <p>
-                        @milchjieper<br/>
-                        github.com/dsiebel
+                        <a href="http://twitter.com/milchjieper">@milchjieper</a><br/>
+                        <a href="https://github.com/dsiebel">github.com/dsiebel</a>
                     </p>
                 </section>
 
@@ -75,13 +70,23 @@
                     <p>
                         Jan van Thoor<br/>
                         Software Engineer<br/>
-                        <img src="img/trivago_logo_small.png"/><br/>
+                        <br/>
+                        <img src="img/trivago_logo_small_2.png"/><br/>
                         trivago
                     </p>
                     <p>
-                        @janvanthoor<br/>
-                        github.com/janvt
+                        <a href="http://twitter.com/janvanthoor">@janvanthoor</a><br/>
+                        <a href="https://github.com/janvt">github.com/janvt</a>
                     </p>
+                </section>
+
+                <section>
+                    <h1>"Da is' was kaputt!"</h1>
+                    <h3>debugging client-side JavaScript</h3>
+
+                    <aside class="notes">
+                        Folien auf englisch, talk auf deutsch
+                    </aside>
                 </section>
 
                 <section>
@@ -140,16 +145,17 @@
                         <img src="img/alert_huhu_obj.png"/>
                         <aside class="notes">
                             welche informationen soll man daraus gewinnen?<br/>
-                            (außer zu verifizieren, dass ein bestimmtes Stück code ausgeführt wurde)
+                            (außer zu verifizieren, dass ein bestimmtes Stück code ausgeführt wurde)<br/>
+                            Aber auch Console ist nicht in allen Situation hilfreich [click]
                         </aside>
                     </section>
                     <section>
                         <img src="img/console_debug_obj.png"/>
                         <aside class="notes">
-                            Möglichkeit Objekte zu debuggen<br/>
-                            hat <em>auch</em> ihre Besonderheiten<br/>
+                            zwar Möglichkeit Objekte zu debuggen<br/>
+                            aber <em>auch</em> einige Besonderheiten<br/>
                             [siehe code]<br/>
-                            immernoch keine Informationen über den context zum Ausführungszeitpunkts
+                            + immernoch keine Informationen über den context zum Ausführungszeitpunkts
                         </aside>
                     </section>
                     <section>
@@ -185,7 +191,10 @@
                     <h5>- Quality assurance</h5>
 
                     <aside class="notes">
-                        IE7 doesn’t have no debug tools (at least none that are working properly)
+                        <ul>
+                            <li>Keine DevTools im IE</li>
+                            <li>Keine <strong>guten</strong> DevTools im IE</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -194,7 +203,10 @@
                     <h5>- Customer</h5>
 
                     <aside class="notes">
-                        JS not always easy to debug in production b/c of minifcation, compression, ...
+                        <ul>
+                            <li>Debugging nicht immer leicht</li>
+                            <li>vor allem / wegen minification, recompile, etc...</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -206,21 +218,30 @@
                     </code>
 
                     <aside class="notes">
-                        Meaning, that if we open the code in production it looks a little something like ...<br/>
+                        <ul>
+                            <li>kennt man ja...</li>
+                            <li>Fehler in console folgen und wir sehen...</li>
+                        </ul>
                     </aside>
                 </section>
 
                 <section data-background="img/code.jpg">
                     <aside class="notes">
-                        this! (taken from enterjs homepage)
+                        <ul>
+                            <li>das! (von enterjs homepage)</li>
+                            <li>bzw... [click]</li>
+                        </ul>
                     </aside>
                 </section>
 
                 <section data-background="img/code_trvjs2.jpg">
                     <aside class="notes">
-                        (reality)<br/>
-                        yes, there are source maps in Chrome Canary and Firefox<br/>
-                        but only if you’re able to minify your javascript with the Google Closure compiler (afaik)
+                        <ul>
+                            <li>das! (kein syntax highlighting)</li>
+                            <li>Source Maps</li>
+                            <li>afaik nur Chrome Canary / Chromium</li>
+                            <li>nur mit closure compiler</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -245,21 +266,21 @@
                 <section>
                     <h2>watch your stacks!</h2>
                     <aside class="notes">
-                        <p>
-                            first answer: good stacktraces<br/>
-                            How do we do good stacktraces?
-                        </p>
-                        <p>
-                            stacktraces can really help you figure out what was actually going on, when things went south<br/>
-                            So get them right!
-                        </p>
+                        <ul>
+                            <li>wichtigester Punkt: aussagekräftige Stacktraces</li>
+                            <li>Leider viel zu oft vernachlässigt</li>
+                            <li>Können aber <em>wirklich</em> nützlich sein</li>
+                            <li>also: wie kommen wir da ran?</li>
+                        </ul>
                     </aside>
                 </section>
 
                 <section>
                     <h2><code>{object Error}</code></h2>
                     <aside class="notes">
-                        First of all understand how javascript errors work in the browser<br/>
+                        <ul>
+                            <li>wichtig zu verstehen wie javascript Fehler im Browser funktionieren</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -278,9 +299,12 @@
                         </code>
                     </p>
                     <aside class="notes">
-                        This is the error object according to MDN [click]<br/>
-                        constructor: message, fileName, lineNumber<br/>
-                        properties: message, name, description, stack
+                        <ul>
+                            <li>Definition der Error object von MDN</li>
+                            <li>constructor: message, fileName, lineNumber</li>
+                            <li>props: z.B. message, name, description, stack</li>
+                            <li>super, oder? Warum stehe ich überhaupt hier?</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -300,18 +324,15 @@
                     </p>
 
                     <aside class="notes">
-                        but it's not that easy<br/>
-                        <br/>
-                        Incompatibilities:
                         <ul>
-                            <li>fileName is not standard</li>
-                            <li>lineNumber ist not standard</li>
-                            <li>columnNumber only sometimes available</li>
-                            <li>IE breaks differently with every version</li>
-                            <li>Some browsers put properties on instances other on prototype</li>
-                            <li>Format of the stacktrace varies accross browsers</li>
-                            <li>Chrome uses line, Firefox uses lineNumber</li>
-                            <li>Not all properties will be visible in the debugger (not always treated as object)</li>
+                            <li>leider nicht so einfach [click]</li>
+                            <li>viele Inkompatibilitäten (vor allem zw. Browsern):</li>
+                            <li>fileName nicht standard</li>
+                            <li>lineNumber nicht standard</li>
+                            <li>IE fällt in jeder Version auf andere Weise auf die Nase</li>
+                            <li>Chrome setzt line prop., Firefox lineNumber</li>
+                            <li>Prop an instance vs. Prop. an prototype</li>
+                            <li>Unterschiedliche stacktrace formate  (Beispiel)</li>
                         </ul>
                     </aside>
                 </section>
@@ -320,9 +341,8 @@
                     <h2>demo</h2>
                     <h5>handling Error in JavaScript</h5>
                     <aside class="notes">
-                        Lets see how this looks in the browser<br/>
-                        <br/>
-                        browser comparison, thrown vs unthrown
+                        Vergleich Stacktraces in versch. Browsern<br/>
+                        (+ thrown vs. unthrown)
                     </aside>
                 </section>
 
@@ -351,9 +371,9 @@
 
                         <aside class="notes">
                             <ul>
-                                <li>native code (the javascript runtime)</li>
-                                <li>[click] at some point executes a <code>function foo(</code>)</li>
-                                <li>[click] which executes a <code>function bar()</code></li>
+                                <li>native code (javascript runtime)</li>
+                                <li>[click] führt  <code>function foo()</code> aus</li>
+                                <li>[click] führt <code>function bar()</code> aus</li>
                             </ul>
                         </aside>
                     </section>
@@ -375,7 +395,7 @@
                         </ul>
 
                         <aside class="notes">
-                            now an error happens in <code>function bar()</code>
+                            Fehler in <code>function bar()</code>
                         </aside>
                     </section>
 
@@ -399,7 +419,7 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            it bubbles up all the way through <code>foo()</code>
+                            Fehler bahnt sich Weg durch <code>function foo()</code>
                         </aside>
                     </section>
                     <section class="diagram">
@@ -419,7 +439,7 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            back to the native code
+                            Bis zur runtime
                         </aside>
                     </section>
                     <section class="diagram">
@@ -444,7 +464,7 @@
                         </ul>
 
                         <aside class="notes">
-                            and what does the native code do?
+                            Was macht der native code admit?
                         </aside>
                     </section>
                     <section class="diagram">
@@ -469,10 +489,11 @@
                         </ul>
 
                         <aside class="notes">
-                            pass it to window on error<br/>
+                            delegiert Fehler zu window.onerror<br/>
                             <br/>
-                            errors on a website should not crash the browser process<br/>
-                            -> hence global default error handler
+                            <em>Das ist an sich nichts schlechtes</em><br/>
+                            Webseiten Fehler sollten nicht den Browser abstürzen lassen<br/>
+                            -> deshalb: globaler default error handler
                         </aside>
                     </section>
                 </section>
@@ -490,9 +511,6 @@
                         <span class="bullet yes">&#10003;​</span> name your anonymous functions<br/>
                         <small>(careful in older IEs, though)</small>
                     </p>
-
-                    <aside class="notes">
-                    </aside>
                 </section>
 
                 <section>
@@ -500,8 +518,7 @@
                     <h5>the way of the error - <em>async edition</em></h5>
 
                     <aside class="notes">
-                        Now this get's even more interesting when we cross<br/>
-                        the "asynchronous boundary"
+                        noch mehr Spaß, wenn "asynchrone Grenze" überschritten wird
                     </aside>
                 </section>
 
@@ -526,13 +543,12 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            <p>
-                                again we have our function foo that calls addEventListener or setTimeout or any other native function
-                                that accepts a callback that will be executed at some point in time
-                            </p>
-                            <p>
-                                when the user then clicks something or the timeout elapses our callback gets executed
-                            </p>
+                            <ul>
+                                <li>wieder <code>function foo()</code> [click]</li>
+                                <li>registriert callback an setTimeout, addEventListener [click]</li>
+                                <li>Wird irgendwann später mal ausgeführt</li>
+                                <li>Wenn es so weit ist ... [click]</li>
+                            </ul>
                         </aside>
                     </section>
                     <section class="diagram">
@@ -555,7 +571,7 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            and an error happens in our callback
+                            Callback wird ausgeführt und erzeugt Fehler
                         </aside>
                     </section>
 
@@ -582,7 +598,7 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            again the error bubbles all the way up to the native code
+                            Fehler propagiert zum native code
                         </aside>
                     </section>
                     <section class="diagram">
@@ -605,10 +621,8 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            <p>
-                                So the native code propagates the error back to <code>foo</code>,
-                                because that’s the method that called setTimeout / addEventListener, right?
-                            </p>
+                            Fehler wird jetzt an <code>function foo()</code> weitergereicht, richtig?<br/>
+                            Könnte man meinen weil hier addEventListener aufgerufen wurde
                         </aside>
                     </section>
                     <section class="diagram">
@@ -635,14 +649,10 @@
                             </li>
                         </ul>
                         <aside class="notes">
-                            <strong>wrong!</strong>
-                            <p>
-                                The native code does not know where to put the error, since it’s a completely new execution context
-                                So the error will be delegated directly to window on error
-                            </p>
-                            <p>
-                                [click] But let me show you this in a little example…
-                            </p>
+                            Ist aber falsch <strong>wrong!</strong>
+                            Nativer code weiß nicht wohin mit dem Fehler<br/>
+                            execution context ist ein neuer.<br/>
+                            ==> Beispiel
                         </aside>
                     </section>
                 </section>
@@ -650,9 +660,6 @@
                 <section>
                     <h2>demo</h2>
                     <h5>error bubbling - async edition</h5>
-                    <aside class="notes">
-                        [fade to black if sample not in slides]
-                    </aside>
                 </section>
 
                 <section>
@@ -667,23 +674,23 @@
 
                     <aside class="notes">
                         <ul>
-                            <li>what “page” did the user navigate to?</li>
-                            <li>what payloads did my server deliver?</li>
-                            <li>what functionality caused the issue?</li>
-                            <li>what installed browser extensions could have caused the issue?</li>
-                            <li>cookie to switch dev / prod mode for specific sessions</li>
-                            <li>create browser extension for common platform related tasks</li>
+                            <li>welche “Seite” hat der Benutzer besucht?</li>
+                            <li>welche Payload hat mein Server ausgeliefert?</li>
+                            <li>Browser extensions?</li>
                         </ul>
                     </aside>
                 </section>
 
                 <section>
-                    <h2>debug-friendly software design</h2>
+                    <h2>debug-friendly software</h2>
                     <h5>e.g. Mediator Pattern</h5>
                     <aside class="notes">
-                        one thing we did at trivago: implement messaging patterns<br/>
-                        mediator pattern w/ top level mediator<br/>
-                        comparable to idea behind facebook's flux
+                        <ul>
+                            <li>trivago: messaging pattern</li>
+                            <li>eigenes Framework basierend auf Marionette</li>
+                            <li>top level mediator</li>
+                            <li>ähnlich wie flux</li>
+                        </ul>
                     </aside>
                 </section>
 
@@ -704,22 +711,34 @@
                 <section data-background="img/trackjs.png" data-background-size="95%"></section>
 
                 <section>
+                    <h2>tooling</h2>
+                    <h5>other</h5>
+                    <p>debug mode (e.g. via Cookie)</p>
+                    <p>browser extension</p>
+                    <aside class="notes">
+                        <ul>
+                            <li>z.B. cookie um sessions von prod auf debug ändern zu können</li>
+                            <li>oder browser extension für allgemeine plattfrom spezifische Aufgaben</li>
+                        </ul>
+                    </aside>
+                </section>
+
+                <section>
                     <h2>the debuggable application</h2>
                     <h5>conclusion</h5>
                     <p><span class="bullet yes">&#10003;​</span> know your {object Error}</p>
                     <p><span class="bullet yes">&#10003;​</span> handle your errors early</p>
                     <p><span class="bullet yes">&#10003;​</span> name your anonymous functions</p>
-
-                    <p>
-                        <span class="bullet yes">&#10003;​</span> build your application to help you debug<br/>
-                        <small>e.g. with a centralized system for module communication (MessageBus)</small>
-                    </p>
-                    <p>
-                        <span class="bullet yes">&#10003;​</span> log everything / get error context<br/>
-                        <small>(e.g. use tools like {Track:js}, stacktrace.js, TraceKit)</small>
-                    </p>
+                    <p><span class="bullet yes">&#10003;​</span> build your application to help you debug</p>
+                    <p><span class="bullet yes">&#10003;​</span> log everything / get error context</p>
                     <aside class="notes">
-
+                        <ul>
+                            <li>error handling in javascript verstehen</li>
+                            <li>Fehler rechtzeitig verarbeiten</li>
+                            <li>anonyme funktionen benennen => aussagekräftige Stacktraces</li>
+                            <li>Applikation debug freundlich bauen (MessageBus/Mediator)</li>
+                            <li>tooling: {Track:js}</li>
+                        </ul>
                     </aside>
                 </section>
 
