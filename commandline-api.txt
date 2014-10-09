@@ -1,0 +1,127 @@
+alias for document.querySelector
+================================
+$('img').src
+
+alias for document.querySelectorAll
+===================================
+$$('img')
+
+
+last result
+===========
+$_
+
+
+// => inspect elements
+
+
+last 4 inspected DOM elements
+=============================
+$0..$4
+
+
+clear console
+=============
+clear()
+
+
+copy string representation of object to clipboard
+=================================================
+$$('img')
+copy($_.length)
+
+
+object style listing of object's properties
+===========================================
+$('img')
+dir($_)
+
+
+array of object's property key
+==============================
+$('img')
+keys($_)
+
+
+array of object's property values
+=================================
+$('img')
+values($_)
+
+
+table presentation of data
+==========================
+var names = {0:{ firstName:"John", lastName:"Smith"},1:{firstName:"Jane",lastName: "Doe"}};
+table(names);
+var namesArr = [{ firstName:"John", lastName:"Smith"},{firstName:"Jane",lastName: "Doe"}];
+table(namesArr);
+
+
+jump to inpector
+================
+$$('img')
+// right click, "Reveal in Elements Panel"
+inspect($_[5]);
+
+
+set breakpoint on function call
+===============================
+function log(message) {
+    alert(message);
+}
+log('Da is was kaputt!')
+debug(log)
+log('Da is was kaputt!')
+undebug(log)
+log('Da is was kaputt!')
+
+
+set breakpoint in code
+======================
+function log(message) {
+    debugger;
+    alert(message);
+}
+
+
+set breakpoint in dev tools "source" panel
+==========================================
+function log(message, severity) {
+    if (severity > 3) {
+        alert('ALARM! ' + message);
+    } else {
+        console.info(message);
+    }
+}
+debug(log)
+log('Da is was kaputt!')
+
+// => breakpoint if severity != null
+
+undebug(log)
+log('Da is was kaputt!')
+
+
+monitor function calls
+======================
+function log(message) {
+    alert(message);
+}
+monitor(log)
+log('Da is was kaputt!')
+unmonitor(log)
+log('Da is was kaputt!')
+
+
+DOM breakpoints
+===============
+$('body')
+inspect($_)
+// right click, "Break on", "Attributes Modifications"
+$('body').classList.add('test')
+
+
+AJAX breakpoints
+================
+breakpoints.html
+
